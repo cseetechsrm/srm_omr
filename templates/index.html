@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMR Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <div class="upload-form">
+        <h1>Welcome to the OMR Processing Dashboard</h1>
+        <p>Upload the OMR PDF to process the results.</p>
+        <h2>Upload OMR PDF</h2>
+        <form id="omrForm" action="/upload" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <label for="teacher_name">Teacher Name:</label>
+            <input type="text" name="teacher_name" required><br>
+
+            <label for="subject">Subject:</label>
+            <input type="text" name="subject" required><br>
+
+            <label for="num_of_questions">Number of Questions:</label>
+            <input type="number" id="num_of_questions" name="num_of_questions" min="1" max="20" required><br>            
+
+            <label for="answer_key">Answer Key (comma-separated):</label>
+            <input type="text" id="answer_key" name="answer_key" required><br>
+
+            <label for="pdf_file">Upload PDF:</label>
+            <input type="file" name="pdf_file" accept=".pdf" required><br>
+
+            <input type="submit" value="Process OMR">
+        </form>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Popup for Error Messages -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <p id="popupMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        // Function to validate the answer key length
+        function validateForm() {
+            const numQuestions = document.getElementById('num_of_questions').value;
+            const answerKey = document.getElementById('answer_key').value.split(',');
+
+            // Check if the length of answer key matches the number of questions
+            if (answerKey.length != numQuestions) {
+                showPopup(`The number of answers in the answer key (${answerKey.length}) does not match the specified number of questions (${numQuestions}).`);
+                return false;  // Prevent form submission
+            }
+            return true;
+        }
+
+        // Function to show the popup with an error message
+        function showPopup(message) {
+            const popup = document.getElementById('popup');
+            const popupMessage = document.getElementById('popupMessage');
+            popupMessage.innerText = message;
+            popup.style.display = 'flex';  // Show the popup
+        }
+
+        // Close the popup when the user clicks on the close button
+        document.getElementById('closePopup').onclick = function() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Close the popup when the user clicks outside the popup content
+        window.onclick = function(event) {
+            const popup = document.getElementById('popup');
+            if (event.target == popup) {
+                popup.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

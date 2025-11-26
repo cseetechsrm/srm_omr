@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMR Results</title>
+    <style>
+        /* Basic styles for overlay and popup */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+            z-index: 500;
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 20px;
+            z-index: 1000;
+            max-width: 90%;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>OMR Results</h1>
+    <button onclick="showPopup()">View Results</button>
+
+    <div id="overlay" onclick="closePopup()"></div>
+    <div id="popup">
+        <h2>Results</h2>
+        <div id="resultsContent" style="display: none;">
+            {{ results_html | safe }}
+        </div>
+        <p>Your Excel file is being downloaded automatically.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('resultsContent').style.display = 'block';  // Show results content
+            window.location.href = '{{ download_link }}';  // Trigger file download
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('resultsContent').style.display = 'none';  // Hide results content when closing
+        }
+    </script>
+</body>
+</html>

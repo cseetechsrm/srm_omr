@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to OMR Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='welcome.css') }}">
+</head>
+<body>
+    <div class="welcome-slide" id="welcomeSlide">
+        <div class="welcome-content">
+            <h1>Welcome to SRM OMR Checking Portal</h1>
+            <p>Revolutionizing the way we process OMR sheets</p>
+        </div>
+    </div>
+
+    <div id="loginPage" class="login-page">
+        <div class="login-container">
+            <h2 class="text-center mb-4">Login</h2>
+            <form id="loginForm" action="/login" method="POST">
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const welcomeSlide = document.getElementById('welcomeSlide');
+            const loginPage = document.getElementById('loginPage');
+
+            // Hide the welcome slide after 3 seconds and show the login form
+            setTimeout(() => {
+                welcomeSlide.classList.add('hide');
+                setTimeout(() => {
+                    welcomeSlide.style.display = 'none';
+                    loginPage.classList.add('show');
+                }, 1000);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

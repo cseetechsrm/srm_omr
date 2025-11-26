@@ -1,0 +1,120 @@
+/* Moving gradient background */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(45deg, #00aaff, #4caedb, #3486bd, #14599b, #2600ff);
+    background-size: 300% 300%;
+    animation: gradientMove 15s ease infinite;
+}
+
+/* Centered welcome message */
+.welcome-container {
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.welcome-message {
+    font-size: 50px;
+    opacity: 0;
+    animation: fadeInUp 3s ease forwards;
+}
+
+.description {
+    font-size: 24px;
+    margin-top: 10px;
+    opacity: 0;
+    animation: fadeInUp 5s ease forwards;
+    animation-delay: 1.5s;
+}
+
+/* Background gradient movement */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Welcome message coming out from the center */
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Parallax sections */
+.parallax {
+    height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(45deg, #00aaff, #ffffff); /* Same as animated body gradient */
+    opacity: 0.9;
+}
+
+/* Content container */
+.content {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent */
+    margin: 0 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dashboard and Upload Form Styling */
+h1, h2 {
+    color: #333;
+}
+
+.upload-form {
+    margin-top: 20px;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #00aaff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #005f99;
+}

@@ -1,0 +1,138 @@
+/* Body Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow-y: auto; /* Allow vertical scrolling */
+    min-height: 100vh; /* Ensure full height for body */
+}
+
+/* Gradient Background */
+.gradient-bg {
+    min-height: 100vh; /* Ensure full height */
+    background: (-45deg, #00aaff, #4caedb, #3486bd, #14599b, #2600ff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 2rem; /* Add padding to avoid content touching edges */
+    position: relative; /* Set position relative for overlay elements */
+}
+
+/* Upload Form Styles */
+.upload-form {
+    background-color: rgba(255, 255, 255, 0.80); /* Semi-transparent white background for upload form */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Set a max width for the form */
+    width: 100%; /* Full width */
+    margin: 0 auto; /* Center align */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    z-index: 1; /* Ensure it sits above the gradient */
+    position: absolute; /* Use absolute positioning for centering */
+    top: 50%; /* Move down 50% from the top */
+    left: 50%; /* Move from the left 50% */
+    transform: translate(-50%, -50%); /* Offset by half its width and height to truly center it */
+}
+
+/* Text Alignment */
+.upload-form h1,
+.upload-form h2 {
+    text-align: center; /* Center titles */
+}
+
+/* Label Styling */
+.upload-form label {
+    display: block; /* Make labels block elements */
+    margin-top: 10px; /* Add some spacing */
+}
+
+/* Input Styles */
+.upload-form input[type="text"],
+.upload-form input[type="number"],
+.upload-form input[type="file"],
+.upload-form input[type="submit"] {
+    width: calc(100% - 20px); /* Full width with some padding */
+    padding: 10px; /* Add some padding */
+    margin-top: 5px; /* Add spacing above inputs */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #ccc; /* Border styling */
+}
+
+/* Submit Button Styles */
+.upload-form input[type="submit"] {
+    background-color: #23A6D5; /* Submit button color */
+    color: white; /* Text color for submit button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Submit Button Hover Effects */
+.upload-form input[type="submit"]:hover {
+    background-color: #1a8a9e; /* Darker color on hover */
+}
+
+
+/* Popup Styles */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup Content */
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative; /* For absolute positioning of close button */
+    animation: slide-in 0.5s ease-out; /* Slide in animation */
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Keyframes for animations */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fade-in 0.5s ease-in;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
